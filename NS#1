@@ -1,0 +1,15 @@
+from cs1lib import start_graphics
+from hanoi import move, draw_hanoi
+
+def solve_hanoi(num_discs, from_peg, to_peg):
+    if num_discs == 1:
+        move(from_peg, to_peg)
+    else:
+        spare_peg = 6 - from_peg - to_peg
+        solve_hanoi(num_discs - 1, from_peg, spare_peg)
+        move(from_peg, to_peg)
+        solve_hanoi(num_discs - 1, spare_peg, to_peg)
+
+solve_hanoi(5, 1, 2)
+
+start_graphics(draw_hanoi, 2400)
